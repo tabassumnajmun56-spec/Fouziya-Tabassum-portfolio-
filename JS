@@ -1,0 +1,99 @@
+// Create stars
+const starsContainer = document.getElementById('stars');
+for (let i = 0; i < 200; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.width = Math.random() * 3 + 'px';
+    star.style.height = star.style.width;
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDuration = Math.random() * 3 + 2 + 's';
+    star.style.animationDelay = Math.random() * 5 + 's';
+    starsContainer.appendChild(star);
+}
+
+// Create clouds
+const cloudsContainer = document.getElementById('clouds');
+for (let i = 0; i < 15; i++) {
+    const cloud = document.createElement('div');
+    cloud.classList.add('cloud');
+    cloud.style.width = Math.random() * 200 + 100 + 'px';
+    cloud.style.height = Math.random() * 40 + 40 + 'px';
+    cloud.style.left = Math.random() * 100 + '%';
+    cloud.style.top = Math.random() * 100 + '%';
+    cloud.style.opacity = Math.random() * 0.5 + 0.1;
+    cloud.style.animationDuration = Math.random() * 30 + 30 + 's';
+    cloud.style.animationDelay = Math.random() * 20 + 's';
+    cloudsContainer.appendChild(cloud);
+}
+
+// Create rainbow bands
+const rainbowContainer = document.getElementById('rainbow');
+const rainbowColors = [
+    '#ff7e5f', '#feb47b', '#ffff7f', '#c2e9fb', '#a1c4fd', '#d291bc', '#ff7e5f'
+];
+
+for (let i = 0; i < 7; i++) {
+    const band = document.createElement('div');
+    band.classList.add('rainbow-band');
+    band.style.backgroundColor = rainbowColors[i];
+    band.style.top = (i * 30) + 'px';
+    band.style.animationDelay = (i * 0.5) + 's';
+    band.style.opacity = 0.7 - (i * 0.1);
+    rainbowContainer.appendChild(band);
+}
+
+// Add scroll animation
+document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'slideUp 1s ease-out forwards';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.project-card, .skill, .about-content').forEach(el => {
+        el.style.opacity = '0';
+        observer.observe(el);
+    });
+});
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        window.scrollTo({
+            top: targetElement.offsetTop - 20,
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Add typing effect to hero text
+function typeEffect(element, speed) {
+    const text = element.innerHTML;
+    element.innerHTML = '';
+    
+    let i = 0;
+    const timer = setInterval(function() {
+        if (i < text.length) {
+            element.append(text.charAt(i));
+            i++;
+        } else {
+            clearInterval(timer);
+        }
+    }, speed);
+}
+
+// Apply typing effect to hero paragraph
+const heroText = document.querySelector('.hero p:first-of-type');
+if (heroText) {
+    const text = heroText.innerHTML;
+    heroText.innerHTML = '';
+    typeEffect(heroText, 100);
+}
