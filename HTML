@@ -3,97 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galaxy Cloudy Rainbow Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <title>My Programming Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Consolas:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="stars" id="stars"></div>
-    <div class="clouds" id="clouds"></div>
-    <div class="rainbow" id="rainbow"></div>
-
-    <div class="container">
-        <header>
-            <div class="logo">Fouziya Tabassum Portfolio</div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cG9ydHJhaXQlMjBnaXJsfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=80" alt="Profile Picture" class="profile-img">
-                <h1>Hello, I'm Fouziya Tabassum</h1>
-                <p>Full Stack Developer & UI/UX Designer</p>
-                <p>Welcome to my cosmic coding journey where I blend technology with creativity to build amazing digital experiences.</p>
-                <a href="#projects" class="btn">View My Work</a>
+    <!-- Background elements -->
+    <div class="petals"></div>
+    <div class="glow"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-code"></i> Fouziya
             </div>
-        </section>
-
-        <section id="projects">
-            <h2 class="section-title">My Projects</h2>
-            <div class="projects">
-                <div class="project-card">
-                    <h3>Python Data Analytics Dashboard</h3>
-                    <p>A comprehensive data visualization tool built with Python, Pandas, and Matplotlib that transforms complex datasets into interactive visual representations.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Java E-commerce Platform</h3>
-                    <p>A full-featured online shopping platform developed with Java Spring Boot, featuring user authentication, payment processing, and inventory management.</p>
-                </div>
-                <div class="project-card">
-                    <h3>HTML/CSS Portfolio Website</h3>
-                    <p>A responsive portfolio website showcasing front-end development skills with advanced CSS animations and JavaScript interactions.</p>
-                </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#" class="nav-link login-btn">Login</a>
             </div>
-        </section>
+        </div>
+    </nav>
 
-        <section id="skills">
-            <h2 class="section-title">My Skills</h2>
-            <div class="skills">
-                <div class="skill">Python</div>
-                <div class="skill">Java</div>
-                <div class="skill">HTML5</div>
-                <div class="skill">CSS3</div>
-                <div class="skill">JavaScript</div>
-                <div class="skill">React</div>
-                <div class="skill">SQL</div>
-                <div class="skill">Git</div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Hello, I'm <span class="highlight">Fouziya Tabassum</span></h1>
+            <p class="hero-description">A passionate programmer creating beautiful and functional web experiences</p>
+            <button class="cta-button">Explore My Work <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="hero-image">
+            <div class="image-placeholder">
+                <i class="fas fa-laptop-code"></i>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="about">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <p>I'm a passionate full-stack developer with expertise in Python, Java, and web technologies. My journey in programming began during my computer science studies, where I discovered my love for creating elegant solutions to complex problems.</p>
-                <p>With experience in both front-end and back-end development, I enjoy building complete applications from concept to deployment. My approach combines technical expertise with creative design thinking to deliver user-centered solutions.</p>
-                <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge through tech blogs and workshops.</p>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a passionate developer who loves to create beautiful and functional web experiences. My journey in programming started when I was 15, and I've been hooked ever since!</p>
+                <p>When I'm not coding, you can find me reading tech blogs, experimenting with new design trends, or enjoying a good cup of coffee while brainstorming my next project.</p>
+                <p>I believe in continuous learning and always strive to expand my knowledge in the ever-evolving world of web development.</p>
             </div>
-        </section>
-
-        <section id="contact">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <p>Feel free to reach out for collaborations, job opportunities, or just to talk about technology!</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+            <div class="about-image">
+                <div class="rotating-circle">
+                    <i class="fas fa-heart"></i>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <footer>
-            <p>© 2023 Galaxy Portfolio. All rights reserved.</p>
-        </footer>
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <h2 class="section-title">My Skills</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fab fa-html5"></i>
+                </div>
+                <h3>HTML5</h3>
+                <div class="skill-bar">
+                    <div class="skill-progress html"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fab fa-css3-alt"></i>
+                </div>
+                <h3>CSS3</h3>
+                <div class="skill-bar">
+                    <div class="skill-progress css"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fab fa-js-square"></i>
+                </div>
+                <h3>JavaScript</h3>
+                <div class="skill-bar">
+                    <div class="skill-progress js"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fab fa-python"></i>
+                </div>
+                <h3>Python</h3>
+                <div class="skill-bar">
+                    <div class="skill-progress python"></div>
+                </div>
+            </div>
+        </div>
+        <div class="learning-more">
+            <p>And I'm continuously learning more languages and frameworks!</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2 class="section-title">My Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Creative Design</h3>
+                    <p>A beautiful web design project with interactive elements.</p>
+                    <button class="project-btn">View Project</button>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Responsive App</h3>
+                    <p>A fully responsive application that works on all devices.</p>
+                    <button class="project-btn">View Project</button>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="project-content">
+                    <h3>JavaScript Game</h3>
+                    <p>An interactive game built with pure JavaScript.</p>
+                    <button class="project-btn">View Project</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>codergirl@example.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+1 (234) 567-8901</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Digital Space, Internet</p>
+                </div>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name">
+                <input type="email" placeholder="Your Email">
+                <textarea placeholder="Your Message"></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2023 CoderGirl Portfolio. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login to Your Account</h2>
+            <form class="login-form">
+                <input type="text" placeholder="Username">
+                <input type="password" placeholder="Password">
+                <button type="submit">Login</button>
+            </form>
+        </div>
     </div>
 
     <script src="script.js"></script>
