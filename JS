@@ -1,99 +1,213 @@
-// Create stars
-const starsContainer = document.getElementById('stars');
-for (let i = 0; i < 200; i++) {
-    const star = document.createElement('div');
-    star.classList.add('star');
-    star.style.width = Math.random() * 3 + 'px';
-    star.style.height = star.style.width;
-    star.style.left = Math.random() * 100 + '%';
-    star.style.top = Math.random() * 100 + '%';
-    star.style.animationDuration = Math.random() * 3 + 2 + 's';
-    star.style.animationDelay = Math.random() * 5 + 's';
-    starsContainer.appendChild(star);
-}
 
-// Create clouds
-const cloudsContainer = document.getElementById('clouds');
-for (let i = 0; i < 15; i++) {
-    const cloud = document.createElement('div');
-    cloud.classList.add('cloud');
-    cloud.style.width = Math.random() * 200 + 100 + 'px';
-    cloud.style.height = Math.random() * 40 + 40 + 'px';
-    cloud.style.left = Math.random() * 100 + '%';
-    cloud.style.top = Math.random() * 100 + '%';
-    cloud.style.opacity = Math.random() * 0.5 + 0.1;
-    cloud.style.animationDuration = Math.random() * 30 + 30 + 's';
-    cloud.style.animationDelay = Math.random() * 20 + 's';
-    cloudsContainer.appendChild(cloud);
-}
-
-// Create rainbow bands
-const rainbowContainer = document.getElementById('rainbow');
-const rainbowColors = [
-    '#ff7e5f', '#feb47b', '#ffff7f', '#c2e9fb', '#a1c4fd', '#d291bc', '#ff7e5f'
-];
-
-for (let i = 0; i < 7; i++) {
-    const band = document.createElement('div');
-    band.classList.add('rainbow-band');
-    band.style.backgroundColor = rainbowColors[i];
-    band.style.top = (i * 30) + 'px';
-    band.style.animationDelay = (i * 0.5) + 's';
-    band.style.opacity = 0.7 - (i * 0.1);
-    rainbowContainer.appendChild(band);
-}
-
-// Add scroll animation
+// Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animation = 'slideUp 1s ease-out forwards';
-                observer.unobserve(entry.target);
+    // Create rose petals
+    createPetals();
+    
+    // Modal functionality
+    const loginBtn = document.querySelector('.login-btn');
+    const modal = document.getElementById('loginModal');
+    const closeModal = document.querySelector('.close-modal');
+    
+    loginBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.style.display = 'flex';
+        createConfetti();
+    });
+    
+    closeModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+    
+    // Navigation smooth scroll
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (this.hash !== "" && !this.classList.contains('login-btn')) {
+                e.preventDefault();
+                
+                const hash = this.hash;
+                const target = document.querySelector(hash);
+                
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Add confetti when navigating to sections
+                if (hash !== '#home') {
+                    createConfetti();
+                }
             }
         });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.project-card, .skill, .about-content').forEach(el => {
-        el.style.opacity = '0';
-        observer.observe(el);
     });
-});
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
+    
+    // Project buttons confetti
+    document.querySelectorAll('.project-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            createConfetti();
+        });
+    });
+    
+    // CTA button confetti
+    document.querySelector('.cta-button').addEventListener('click', function() {
+        createConfetti();
         
-        window.scrollTo({
-            top: targetElement.offsetTop - 20,
+        // Scroll to projects section
+        document.querySelector('#projects').scrollIntoView({
             behavior: 'smooth'
         });
     });
 });
 
-// Add typing effect to hero text
-function typeEffect(element, speed) {
-    const text = element.innerHTML;
-    element.innerHTML = '';
+// Create animated rose petals
+function createPetals() {
+    const petalsContainer = document.querySelector('.petals');
     
-    let i = 0;
-    const timer = setInterval(function() {
-        if (i < text.length) {
-            element.append(text.charAt(i));
-            i++;
+    for (let i = 0; i < 15; i++) {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        
+        // Random properties
+        const size = Math.random() * 20 + 10;
+        const posX = Math.random() * 100;
+        const delay = Math.random() * 15;
+        const duration = Math.random() * 10 + 10;
+        
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size}px`;
+        petal.style.left = `${posX}%`;
+        petal.style.animationDelay = `${delay}s`;
+        petal.style.animationDuration = `${duration}s`;
+        
+        // Random petal shape
+        const isHeart = Math.random() > 0.5;
+        if (isHeart) {
+            petal.style.background = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23ff9e9e\'%3E%3Cpath d=\'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\'/%3E%3C/svg%3E") no-repeat center/contain';
         } else {
-            clearInterval(timer);
+            petal.style.background = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23ff7eb4\'%3E%3Cpath d=\'M12 2C9.33 4 6.67 5 4 5c0 4 2 8 8 11 6-3 8-7 8-11-2.67 0-5.33-1-8-3z\'/%3E%3C/svg%3E") no-repeat center/contain';
         }
-    }, speed);
+        
+        petalsContainer.appendChild(petal);
+    }
+    
+    // Add CSS for petals animation
+    const style = document.createElement('style');
+    style.textContent = `
+        .petal {
+            position: absolute;
+            opacity: 0.7;
+            pointer-events: none;
+            animation: fallingPetals linear infinite;
+        }
+        
+        @keyframes fallingPetals {
+            0% {
+                top: -10%;
+                transform: translateX(0) rotate(0deg);
+            }
+            100% {
+                top: 100%;
+                transform: translateX(calc((cos(360deg) * 200px) - 100px)) rotate(360deg);
+            }
+        }
+    `;
+    
+    document.head.appendChild(style);
 }
 
-// Apply typing effect to hero paragraph
-const heroText = document.querySelector('.hero p:first-of-type');
-if (heroText) {
-    const text = heroText.innerHTML;
-    heroText.innerHTML = '';
-    typeEffect(heroText, 100);
+// Create confetti effect
+function createConfetti() {
+    const confettiContainer = document.createElement('div');
+    confettiContainer.style.position = 'fixed';
+    confettiContainer.style.top = '0';
+    confettiContainer.style.left = '0';
+    confettiContainer.style.width = '100%';
+    confettiContainer.style.height = '100%';
+    confettiContainer.style.pointerEvents = 'none';
+    confettiContainer.style.zIndex = '1000';
+    document.body.appendChild(confettiContainer);
+    
+    const colors = ['#ff9e9e', '#ff7eb4', '#d44d5c', '#ff6b6b', '#ffaaab'];
+    const shapes = ['circle', 'square', 'heart'];
+    
+    for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        const size = Math.random() * 12 + 5;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        
+        confetti.style.position = 'absolute';
+        confetti.style.width = `${size}px`;
+        confetti.style.height = `${size}px`;
+        confetti.style.left = `${Math.random() * 100}%`;
+        
+        if (shape === 'circle') {
+            confetti.style.borderRadius = '50%';
+            confetti.style.background = color;
+        } else if (shape === 'square') {
+            confetti.style.background = color;
+        } else {
+            confetti.style.background = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='${color.replace('#', '%23')}'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center/contain`;
+        }
+        
+        confetti.style.opacity = '0';
+        confettiContainer.appendChild(confetti);
+        
+        // Animate confetti
+        const animation = confetti.animate([
+            {
+                opacity: 0,
+                transform: `translateY(0) rotate(0deg)`,
+            },
+            {
+                opacity: 1,
+                offset: 0.1
+            },
+            {
+                opacity: 1,
+                transform: `translateY(80vh) rotate(${Math.random() * 360}deg) translateX(${Math.random() * 200 - 100}px)`,
+            }
+        ], {
+            duration: Math.random() * 3000 + 2000,
+            easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+        });
+        
+        animation.onfinish = () => {
+            confetti.remove();
+            if (confettiContainer.children.length === 0) {
+                confettiContainer.remove();
+            }
+        };
+    }
 }
+
+// Add scroll animations
+window.addEventListener('scroll', function() {
+    document.querySelectorAll('.skill-progress').forEach(progress => {
+        const rect = progress.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8) {
+            progress.style.animation = 'fillBar 2s ease-in-out';
+        }
+    });
+    
+    document.querySelectorAll('.project-card, .skill-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8) {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }
+    });
+});
+
+// Initialize elements with opacity 0 for scroll animation
+document.querySelectorAll('.project-card, .skill-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+});
